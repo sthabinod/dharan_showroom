@@ -20,32 +20,32 @@ router.route("/").post((req, res) => {
     res.json(vehicle);
 });
 
-// router.get("/:id", async(req, res) => {
-//     const id = req.params.id;
-//     getRelatedProduct = await Product.findByPk(id);
-//     res.json(getRelatedProduct);
-// });
+router.get("/:id", async(req, res) => {
+    const id = req.params.id;
+    getRelatedProduct = await Product.findByPk(id);
+    res.json(getRelatedProduct);
+});
 
-// router.get("/products", async(req, res) => {
-//     getLatestProducts = await Product.findAll({
-//         limit: 2,
-//         order: [
-//             ["id", "DESC"]
-//         ],
-//     });
-//     res.json(getLatestProducts);
-// });
+router.get("/products", async(req, res) => {
+    getLatestProducts = await Product.findAll({
+        limit: 2,
+        order: [
+            ["id", "DESC"]
+        ],
+    });
+    res.json(getLatestProducts);
+});
 
-// router.post("/search", async(req, res) => {
-//     const product = req.body;
-//     showProduct = await Product.findAll({
-//         where: {
-//             title: {
-//                 [Op.like]: `%${product.keyword}%`,
-//             },
-//         },
-//     });
-//     res.json(showProduct);
-// });
+router.post("/search", async(req, res) => {
+    const product = req.body;
+    showProduct = await Product.findAll({
+        where: {
+            title: {
+                [Op.like]: `%${product.keyword}%`,
+            },
+        },
+    });
+    res.json(showProduct);
+});
 
 module.exports = router;

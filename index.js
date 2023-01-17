@@ -10,39 +10,38 @@ const db = require("./models");
 
 app.use(cors());
 
-// Routers
-// const customerRouter = require("./routes/Customer");
-// app.use("/customer", customerRouter);
+const customerRouter = require("./routes/Customer");
+app.use("/customer", customerRouter);
 
-// const medicalStaffRouter = require("./routes/MedicalStaff");
-// app.use("/medical-staff", medicalStaffRouter);
+const medicalStaffRouter = require("./routes/MedicalStaff");
+app.use("/medical-staff", medicalStaffRouter);
 
-// const categoryRouter = require("./routes/Categories");
-// app.use("/category", categoryRouter);
+const categoryRouter = require("./routes/Categories");
+app.use("/category", categoryRouter);
 
-// const mStaffCatRouter = require("./routes/MedicalStaffCategory");
-// app.use("/m-staff-cat", mStaffCatRouter);
+const mStaffCatRouter = require("./routes/MedicalStaffCategory");
+app.use("/m-staff-cat", mStaffCatRouter);
 
 const vehicleRouter = require("./routes/Vehicle");
 app.use("/vehicle", vehicleRouter);
 
-// const notificationRouter = require("./routes/Notification");
-// app.use("/notification", notificationRouter);
+const notificationRouter = require("./routes/Notification");
+app.use("/notification", notificationRouter);
 
-// const educationRouter = require("./routes/Education");
-// app.use("/education", educationRouter);
+const educationRouter = require("./routes/Education");
+app.use("/education", educationRouter);
 
-// const feedbackRouter = require("./routes/Feedback");
-// app.use("/feedback", feedbackRouter);
+const feedbackRouter = require("./routes/Feedback");
+app.use("/feedback", feedbackRouter);
 
-// const companyRouter = require("./routes/Company");
-// app.use("/company", companyRouter);
+const companyRouter = require("./routes/Company");
+app.use("/company", companyRouter);
 
-// const orderRouter = require("./routes/Order");
-// app.use("/order", orderRouter);
+const orderRouter = require("./routes/Order");
+app.use("/order", orderRouter);
 
-// const userRouter = require("./routes/User");
-// app.use("/users", userRouter);
+const userRouter = require("./routes/User");
+app.use("/users", userRouter);
 
 const AdminBroSequelize = require("@admin-bro/sequelize");
 AdminBro.registerAdapter(AdminBroSequelize);

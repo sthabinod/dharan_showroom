@@ -3,7 +3,7 @@ const { sequelize } = require("../models");
 const router = express.Router();
 
 const { validateToken } = require("../middleware/AuthMiddleware");
-const { Product, Customer, Order } = require("../models");
+const { Product, Customer, PartsOrder } = require("../models");
 
 router.get("/:id", async(req, res) => {
     const id = req.params.id;
@@ -11,27 +11,35 @@ router.get("/:id", async(req, res) => {
     res.json(getRelatedOrder);
 });
 
-router.route("/").post(async(req, res) => {
+// async and await waiting for the data to be inserting and doing other things 
+router.route("/").post(validateToken, async(req, res) => {
     // using sequelize to post data
     // accessing data
     // body has data in json
     const order = req.body;
     console.log(order);
+    const userId = req.user.id
+    console.log(userId);
     const customer = await Customer.findOne({
-        where: { UserId: order.userId },
+        where: { UserId: userId },
     });
+
+    
 
     if (!customer) {
         res.json({
             error: "You have to update information before submitting order.",
         });
     } else if (customer) {
-        const orderToAdd = Order.create({
-            orderNumber: order.orderNumber,
-            ProductId: order.ProductId,
-            UserId: order.userId,
+        const orderToAdd = await PartsOrder.create({
+            "quantity": order.quantity,
+            "orderDate": order.orderDate,
+            "UserId": userId,
+            "partsOrderId":order.partsOrderId,
+            "VehiclePartId":order.VehiclePartId
+
         });
-        res.json({ success: "Wait for confirmation." });
+        res.json({status:"SUCCESS" ,message: "Wait for confirmation.",data:orderToAdd });
     }
 });
 

@@ -1,22 +1,23 @@
 const express = require("express");
 const { sequelize } = require("../models");
 const router = express.Router();
-
-const { Categories } = require("../models");
+const { VehicleParts } = require("../models");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
+
 router.route("/").get(validateToken, async(req, res) => {
-    showCategories = await Categories.findAll();
-    res.json(showCategories);
+    vehicleParts = await VehicleParts.findAll();
+    res.json(vehicleParts);
 });
 
+// async and await waiting for the data to be inserting and doing other things
 router.route("/").post(validateToken, async(req, res) => {
     // using sequelize to post data
     // accessing data
     // body has data in json
-    const categories = req.body;
-    Categories.create(Categories);
-    res.json(categories);
+    const vehicleParts = req.body;
+    await VehicleParts.create(vehicleParts);
+    res.json(vehicleParts);
 });
 
 module.exports = router;

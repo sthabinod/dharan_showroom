@@ -60,8 +60,9 @@ router.route("/").post(async(req, res) => {
     }
 });
 
+router.route("/update").get(validateToken, (req, res) => {
 // async and await waiting for the data to be inserting and doing other things
-router.route("/update").post(validateToken, async(req, res) => {
+
     // using sequelize to post data
     // accessing data
     // body has data in json
